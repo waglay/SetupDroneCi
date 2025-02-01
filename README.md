@@ -16,7 +16,9 @@ To create a Github OAuth application:
  <img width="1440" alt="Screen Shot 2025-02-01 at 12 01 12 PM" src="https://github.com/user-attachments/assets/27f1177d-ef86-4fce-9b15-850d3f6aad96" />
 
 The home url should be the url of the host and port of where the drone app is running and the return url must be the same as homeurl /login.
+
 **Note**: Drone requires publicly hosted instances to initiate the webhooks, so please use a public ipaddress or use ngrok as I have done.
+
 **Also**: Keep in mind if the terminal running ngrok gets terminated, all of this will not work as ngrok on free will refresh your ip address.
 
 - After the auth application is created you will get the client ID and Client secret, at first client secret needs to be generated. After generation please copy it in a secure environment because you will not be able to access it yourself after the tab is closed.
@@ -31,7 +33,7 @@ content in .env
 ```
 # Server configuration
 DRONE_SERVER_HOST=<ngrok hostname>
-DRONE_SERVER_PROTO=http
+DRONE_SERVER_PROTO=https
 DRONE_GITHUB_CLIENT_ID=<github client ID>
 DRONE_GITHUB_CLIENT_SECRET=<github secret>
 DRONE_RPC_SECRET=<Drone secret>
@@ -40,8 +42,9 @@ DRONE_USER_CREATE=username:<github_username>,admin:true
 
 # Runners configuration
 DRONE_RPC_HOST=<ngrok hostname>
-DRONE_RPC_PROTO=http
+DRONE_RPC_PROTO=https
 DRONE_RUNNER_NAME="Drone.io_runner"
+DRONE_RUNNER_CAPACITY=2
 ```
 
 everything is self-explanatory except for DRONE_RPC_SECRET=<Drone secret>, this can be generated using ```openssh rand -hex 16``` in shell.
@@ -101,4 +104,6 @@ export DRONE_SERVER=http://drone.mycompany.com
 ```
 export DRONE_TOKEN=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
 ```
+The DRONE_TOKEN can be accessed in the ui, after clicking your profile picture.
+
 That is how we can setup and run drone-ci, the actual running commands are not mentioned here just the setup part only.
