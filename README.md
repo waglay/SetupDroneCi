@@ -39,6 +39,9 @@ DRONE_GITHUB_CLIENT_SECRET=<github secret>
 DRONE_RPC_SECRET=<Drone secret>
 DRONE_TLS_AUTOCERT=false
 DRONE_USER_CREATE=username:<github_username>,admin:true
+TZ=Europe/London
+
+#TZ is for setting up the timezone.
 
 # Runners configuration
 DRONE_RPC_HOST=<ngrok hostname>
